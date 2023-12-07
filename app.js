@@ -5,6 +5,7 @@ import mongoose from "mongoose";
 import UserRoutes from "./Controller/UserController.js";
 import session from "express-session";
 import ProductsController from "./Controller/ProductController.js";
+import RatingsAndReviewController from "./Controller/RatingsAndReviewController.js";
 // const CONNECTION_STRING =
 //   process.env.DB_CONNECTION_STRING || "mongodb://127.0.0.1:27017/kanbas";
 const CONNECTION_STRING =
@@ -30,4 +31,5 @@ app.use(session(sessionOptions));
 app.use(express.json());
 UserRoutes(app);
 ProductsController(app);
+RatingsAndReviewController(app);
 app.listen(process.env.PORT || 4000);
