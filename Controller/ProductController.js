@@ -6,8 +6,7 @@ const ProductsController = (app) => {
     res.json({ success: true, products: out });
   };
   const findProductById = async (req, res) => {
-    const { productId } = req.params;
-    const out = await productdao.findOneProductDAO(productId);
+    const out = await productdao.findOneProductDAO(req.params.productId);
     res.json({ success: true, products: out });
   };
   const createProduct = async (req, res) => {
@@ -21,13 +20,13 @@ const ProductsController = (app) => {
   const updateProduct = async (req, res) => {
     const { productId } = req.params;
     const status = await productdao.updateProduct(
-      req.params.product_id,
+      req.params.productId,
       req.body
     );
     res.json(status);
   };
   const deleteProduct = async (req, res) => {
-    const status = await productdao.deleteProduct(req.params.product_id);
+    const status = await productdao.deleteProduct(req.params.productId);
     res.json(status);
   };
 
