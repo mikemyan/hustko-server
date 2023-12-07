@@ -27,6 +27,7 @@
   "homepage": "https://github.com/mikemyan/hustko-server#readme",
   "dependencies": {
     "cors": "^2.8.5",
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "mongoose": "^8.0.2"
   }
 }
