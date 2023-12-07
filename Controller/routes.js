@@ -1,4 +1,4 @@
-import * as dao from "./dao.js";
+import * as dao from "../DAO/dao.js";
 // let currentUser = null;
 function UserRoutes(app) {
   const createUser = async (req, res) => {
@@ -46,7 +46,6 @@ function UserRoutes(app) {
     res.json(200);
   };
   const account = async (req, res) => {
-    console.log("account printing");
     res.json(req.session["currentUser"]);
   };
   app.post("/api/users", createUser);
