@@ -2,7 +2,7 @@ import express from "express";
 import cors from "cors";
 import "dotenv/config";
 import mongoose from "mongoose";
-import UserRoutes from "./Controller/routes.js";
+import UserRoutes from "./Controller/UserController.js";
 import session from "express-session";
 import ProductsController from "./Controller/ProductController.js";
 // const CONNECTION_STRING =

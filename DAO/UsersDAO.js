@@ -1,4 +1,4 @@
-import model from "../Models/model.js";
+import model from "../Models/UsersModel.js";
 export const createUser = (user) => model.create(user);
 export const findAllUsers = () => model.find();
 export const findUserById = (userId) => model.findById(userId);
