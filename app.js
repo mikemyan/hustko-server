@@ -1,15 +1,33 @@
 import express from "express";
 import cors from "cors";
+import "dotenv/config";
 import mongoose from "mongoose";
+import UserRoutes from "./Controller/UserController.js";
+import session from "express-session";
 import ProductsController from "./Controller/ProductController.js";
-mongoose.connect(
-  "mongodb+srv://hustkoAdmin:ES1SuPktduCOikna@hustko.b7jibdd.mongodb.net/hustko?retryWrites=true&w=majority",
-);
+// const CONNECTION_STRING =
+//   process.env.DB_CONNECTION_STRING || "mongodb://127.0.0.1:27017/kanbas";
+const CONNECTION_STRING =
+  "mongodb+srv://hustkoAdmin:ES1SuPktduCOikna@hustko.b7jibdd.mongodb.net/hustko?retryWrites=true&w=majority";
+mongoose.connect(CONNECTION_STRING);
+
 const app = express();
-app.use(cors());
+
+app.use(cors({ credentials: true, origin: process.env.FRONTEND_URL }));
+const sessionOptions = {
+  secret: "any string",
+  resave: false,
+  saveUninitialized: false,
+};
+if (process.env.NODE_ENV !== "development") {
+  sessionOptions.proxy = true;
+  sessionOptions.cookie = {
+    sameSite: "none",
+    secure: true,
+  };
+}
+app.use(session(sessionOptions));
 app.use(express.json());
-
+UserRoutes(app);
 ProductsController(app);
-
-
-app.listen(4000);
+app.listen(process.env.PORT || 4000);
