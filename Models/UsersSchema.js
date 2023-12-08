@@ -13,6 +13,7 @@ const userSchema = new mongoose.Schema(
     },
     mobile: Number,
     primAddress: String,
+    favoriteItems: { type: Array, default: [] },
   },
   { collection: "users" }
 );

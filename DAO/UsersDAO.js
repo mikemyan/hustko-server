@@ -8,3 +8,9 @@ export const findUserByCredentials = (email, password) =>
 export const updateUser = (userId, user) =>
   model.updateOne({ _id: userId }, { $set: user });
 export const deleteUser = (userId) => model.deleteOne({ _id: userId });
+// export const getFavoriteItems = (userId) =>
+//   model.findById(userId).favoriteItems;
+export const addFavoriteItem = (userId, productId) =>
+  model.updateOne({ _id: userId }, { $push: { favoriteItems: productId } });
+export const removeFavoriteItem = (userId, productId) =>
+  model.updateOne({ _id: userId }, { $pull: { favoriteItems: productId } });

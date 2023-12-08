@@ -15,7 +15,6 @@ function UserRoutes(app) {
   };
   const findUserById = async (req, res) => {
     const user = await dao.findUserById(req.params.userId);
-    console.log(user);
     res.json(user);
   };
   const updateUser = async (req, res) => {
@@ -49,6 +48,21 @@ function UserRoutes(app) {
   const account = async (req, res) => {
     res.json(req.session["currentUser"]);
   };
+  // const getFavoriteItems = async (req, res) => {
+  //   const { userId } = req.params;
+  //   const favoriteItems = await dao.getFavoriteItems(userId);
+  //   res.json(favoriteItems);
+  // };
+  const addFavoriteItem = async (req, res) => {
+    const { userId, productId } = req.params;
+    const status = await dao.addFavoriteItem(userId, productId);
+    res.json(status);
+  };
+  const deleteFavoriteItem = async (req, res) => {
+    const { userId, productId } = req.params;
+    const status = await dao.removeFavoriteItem(userId, productId);
+    res.json(status);
+  };
   app.post("/api/users", createUser);
   app.get("/api/users", findAllUsers);
   app.get("/api/users/:userId", findUserById);
@@ -58,5 +72,8 @@ function UserRoutes(app) {
   app.post("/api/users/signin", signin);
   app.post("/api/users/signout", signout);
   app.post("/api/users/account", account);
+  // app.get("/api/users/favorite/:userId", getFavoriteItems);
+  app.put("/api/users/favoriteadd/:userId/:productId", addFavoriteItem);
+  app.put("/api/users/favoriteremove/:userId/:productId", deleteFavoriteItem);
 }
 export default UserRoutes;
