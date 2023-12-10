@@ -7,6 +7,8 @@ const schema = mongoose.Schema({
   manufacturer: { type: String },
   average_rating: { type: Number },
   small_description: { type: String },
+  likedBy: { type: Array, default: [] },
+  quantity: Number,
 });
 
 export default mongoose.model("products", schema);

@@ -1,4 +1,4 @@
-import * as productdao from "../DAO/ProductsDao.js";
+import * as productdao from "../DAO/ProductsDAO.js";
 
 const ProductsController = (app) => {
   const findSearchProduct = async (req, res) => {
@@ -29,6 +29,16 @@ const ProductsController = (app) => {
     const status = await productdao.deleteProduct(req.params.productId);
     res.json(status);
   };
+  const addLikedByUsers = async (req, res) => {
+    const { productId, userId } = req.params;
+    const status = await productdao.addLikedByUsers(productId, userId);
+    res.json(status);
+  };
+  const deleteLikedByUsers = async (req, res) => {
+    const { productId, userId } = req.params;
+    const status = await productdao.removeLikedByUsers(productId, userId);
+    res.json(status);
+  };
 
   app.post("/api/search-products", findSearchProduct);
   app.post("/api/products", createProduct);
@@ -36,5 +46,10 @@ const ProductsController = (app) => {
   app.get("/api/products/:productId", findProductById);
   app.put("/api/products/:productId", updateProduct);
   app.delete("/api/products/:productId", deleteProduct);
+  app.put("/api/products/likeduseradd/:productId/:userId", addLikedByUsers);
+  app.put(
+    "/api/products/likeduserremove/:productId/:userId",
+    deleteLikedByUsers
+  );
 };
 export default ProductsController;

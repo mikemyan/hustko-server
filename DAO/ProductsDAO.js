@@ -11,4 +11,8 @@ export const createProduct = (product) => ProductsModel.create(product);
 export const updateProduct = (productId, product) =>
   ProductsModel.updateOne({ _id: productId }, { $set: product });
 export const deleteProduct = (productId) =>
-    ProductsModel.deleteOne({ _id: productId });
+  ProductsModel.deleteOne({ _id: productId });
+export const addLikedByUsers = (productId, userId) =>
+  ProductsModel.updateOne({ _id: productId }, { $push: { likedBy: userId } });
+export const removeLikedByUsers = (productId, userId) =>
+  ProductsModel.updateOne({ _id: productId }, { $pull: { likedBy: userId } });

@@ -72,7 +72,6 @@ function UserRoutes(app) {
   app.post("/api/users/signin", signin);
   app.post("/api/users/signout", signout);
   app.post("/api/users/account", account);
-  // app.get("/api/users/favorite/:userId", getFavoriteItems);
   app.put("/api/users/favoriteadd/:userId/:productId", addFavoriteItem);
   app.put("/api/users/favoriteremove/:userId/:productId", deleteFavoriteItem);
 }
