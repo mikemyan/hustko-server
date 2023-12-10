@@ -48,11 +48,6 @@ function UserRoutes(app) {
   const account = async (req, res) => {
     res.json(req.session["currentUser"]);
   };
-  // const getFavoriteItems = async (req, res) => {
-  //   const { userId } = req.params;
-  //   const favoriteItems = await dao.getFavoriteItems(userId);
-  //   res.json(favoriteItems);
-  // };
   const addFavoriteItem = async (req, res) => {
     const { userId, productId } = req.params;
     const status = await dao.addFavoriteItem(userId, productId);

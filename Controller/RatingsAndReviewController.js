@@ -8,7 +8,15 @@ const RatingsAndReviewController = (app) => {
     res.json({ success: true, ratingsAndReviews: out });
   };
 
+  const findRatingsAndReviewByUserId = async (req, res) => {
+    const out = await ratingsAndReviewdao.findRatingAndReviewByUserId(
+      req.params.userId.toString()
+    );
+    res.json({ success: true, ratingsAndReviews: out });
+  };
+
   app.get("/api/ratingsAndReview/:productId", findRatingsAndReviewByProductId);
+  app.get("/api/ratingsAndReview/:userId", findRatingsAndReviewByUserId);
 };
 
 export default RatingsAndReviewController;
