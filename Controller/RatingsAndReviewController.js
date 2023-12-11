@@ -1,5 +1,4 @@
 import * as ratingsAndReviewdao from "../DAO/RatingsAndReviewDAO.js";
-import * as dao from "../DAO/UsersDAO.js";
 
 const RatingsAndReviewController = (app) => {
   const findRatingsAndReviewByProductId = async (req, res) => {
