@@ -15,8 +15,11 @@ const RatingsAndReviewController = (app) => {
     res.json({ success: true, ratingsAndReviews: out });
   };
 
-  app.get("/api/ratingsAndReview/:productId", findRatingsAndReviewByProductId);
-  app.get("/api/ratingsAndReview/:userId", findRatingsAndReviewByUserId);
+  app.get(
+    "/api/ratingsAndReview/product/:productId",
+    findRatingsAndReviewByProductId
+  );
+  app.get("/api/ratingsAndReview/user/:userId", findRatingsAndReviewByUserId);
 };
 
 export default RatingsAndReviewController;
