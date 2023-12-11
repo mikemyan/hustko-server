@@ -7,3 +7,7 @@ export const findRatingAndReviewByProductId = (productId) => {
 export const findRatingAndReviewByUserId = (userId) => {
   return RatingsAndReviewModel.find({ userId: userId });
 };
+
+export const createRatingAndReview = (ratingAndReview) => {
+  return RatingsAndReviewModel.create(ratingAndReview);
+};
