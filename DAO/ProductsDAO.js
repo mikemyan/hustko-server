@@ -16,3 +16,5 @@ export const addLikedByUsers = (productId, userId) =>
   ProductsModel.updateOne({ _id: productId }, { $push: { likedBy: userId } });
 export const removeLikedByUsers = (productId, userId) =>
   ProductsModel.updateOne({ _id: productId }, { $pull: { likedBy: userId } });
+export const findProductBySupplierId = (supplierId) =>
+  ProductsModel.find({ supplierId: supplierId });

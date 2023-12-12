@@ -9,6 +9,7 @@ const schema = mongoose.Schema({
   small_description: { type: String },
   likedBy: { type: Array, default: [] },
   quantity: Number,
+  supplierId: String,
 });
 
 export default mongoose.model("products", schema);

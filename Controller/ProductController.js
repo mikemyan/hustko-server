@@ -40,6 +40,11 @@ const ProductsController = (app) => {
     res.json(status);
   };
 
+  const findProductBySupplierId = async (req, res) => {
+    const out = await productdao.findProductBySupplierId(req.params.supplierId);
+    res.json(out);
+  };
+
   app.post("/api/search-products", findSearchProduct);
   app.post("/api/products", createProduct);
   app.get("/api/products", findAllProducts);
@@ -51,5 +56,6 @@ const ProductsController = (app) => {
     "/api/products/likeduserremove/:productId/:userId",
     deleteLikedByUsers
   );
+  app.get("/api/products/supplier/:supplierId", findProductBySupplierId);
 };
 export default ProductsController;
