@@ -38,8 +38,12 @@ function UserRoutes(app) {
   const signin = async (req, res) => {
     const { email, password } = req.body;
     const currentUser = await dao.findUserByCredentials(email, password);
-    req.session['currentUser'] = currentUser;
-    res.json(currentUser);
+    if (currentUser) {
+      req.session['currentUser'] = currentUser;
+      res.json(currentUser);
+    } else {
+      res.status(400).json({ message: 'Invalid credentials' });
+    }
   };
   const signout = (req, res) => {
     req.session.destroy();
