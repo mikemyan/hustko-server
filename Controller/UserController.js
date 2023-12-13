@@ -1,4 +1,4 @@
-import * as dao from "../DAO/UsersDAO.js";
+import * as dao from '../DAO/UsersDAO.js';
 // let currentUser = null;
 function UserRoutes(app) {
   const createUser = async (req, res) => {
@@ -21,24 +21,24 @@ function UserRoutes(app) {
     const { userId } = req.params;
     const status = await dao.updateUser(userId, req.body);
     const currentUser = await dao.findUserById(userId);
-    req.session["currentUser"] = currentUser;
+    req.session['currentUser'] = currentUser;
     res.json(status);
   };
   const signup = async (req, res) => {
     const user = await dao.findUserByEmail(req.body.email);
     if (user) {
-      res.status(400).json({ message: "Email already taken" });
+      res.status(400).json({ message: 'Email already taken' });
     } else {
       const newUser = await dao.createUser(req.body);
       const currentUser = newUser;
-      req.session["currentUser"] = currentUser;
+      req.session['currentUser'] = currentUser;
       res.json(newUser);
     }
   };
   const signin = async (req, res) => {
     const { email, password } = req.body;
     const currentUser = await dao.findUserByCredentials(email, password);
-    req.session["currentUser"] = currentUser;
+    req.session['currentUser'] = currentUser;
     res.json(currentUser);
   };
   const signout = (req, res) => {
@@ -46,7 +46,7 @@ function UserRoutes(app) {
     res.json(200);
   };
   const account = async (req, res) => {
-    res.json(req.session["currentUser"]);
+    res.json(req.session['currentUser']);
   };
   const addFavoriteItem = async (req, res) => {
     const { userId, productId } = req.params;
@@ -58,16 +58,16 @@ function UserRoutes(app) {
     const status = await dao.removeFavoriteItem(userId, productId);
     res.json(status);
   };
-  app.post("/api/users", createUser);
-  app.get("/api/users", findAllUsers);
-  app.get("/api/users/:userId", findUserById);
-  app.put("/api/users/:userId", updateUser);
-  app.delete("/api/users/:userId", deleteUser);
-  app.post("/api/users/signup", signup);
-  app.post("/api/users/signin", signin);
-  app.post("/api/users/signout", signout);
-  app.post("/api/users/account", account);
-  app.put("/api/users/favoriteadd/:userId/:productId", addFavoriteItem);
-  app.put("/api/users/favoriteremove/:userId/:productId", deleteFavoriteItem);
+  app.post('/api/users', createUser);
+  app.get('/api/users', findAllUsers);
+  app.get('/api/users/:userId', findUserById);
+  app.put('/api/users/:userId', updateUser);
+  app.delete('/api/users/:userId', deleteUser);
+  app.post('/api/users/signup', signup);
+  app.post('/api/users/signin', signin);
+  app.post('/api/users/signout', signout);
+  app.post('/api/users/account', account);
+  app.put('/api/users/favoriteadd/:userId/:productId', addFavoriteItem);
+  app.put('/api/users/favoriteremove/:userId/:productId', deleteFavoriteItem);
 }
 export default UserRoutes;
