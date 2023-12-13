@@ -8,6 +8,13 @@ const RatingsAndReviewController = (app) => {
     res.json({ success: true, ratingsAndReviews: out });
   };
 
+  const findAverageRatingsByProductId = async (req, res) => {
+    const out = await ratingsAndReviewdao.findAverageRatingByProductId(
+        req.params.productId.toString()
+    );
+    res.json({ success: true, averageRating: out });
+  };
+
   const findRatingsAndReviewByUserId = async (req, res) => {
     const out = await ratingsAndReviewdao.findRatingAndReviewByUserId(
       req.params.userId.toString()
@@ -21,6 +28,7 @@ const RatingsAndReviewController = (app) => {
   };
 
   app.get("/api/ratingsAndReview/product/:productId", findRatingsAndReviewByProductId);
+  app.get("/api/ratingsAndReview/product/averageRating/:productId", findAverageRatingsByProductId);
   app.get("/api/ratingsAndReview/user/:userId", findRatingsAndReviewByUserId);
   app.post("/api/ratingsAndReview/product", createRatingAndReview);
 };
